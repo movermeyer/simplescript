@@ -17,15 +17,19 @@ import inspect
 from sys import stdin, stdout
 from argparse import FileType, ArgumentParser
 
-__version__ = "0.1"
+__version__ = "0.2"
 
 
 def add_arguments(parser, function):
     spec = inspect.getargspec(function)
-    optional = zip(spec.args[-len(spec.defaults):], spec.defaults)
-    required = spec.args[:-len(spec.defaults)]
+    if spec.defaults is not None:
+        optional = zip(spec.args[-len(spec.defaults):], spec.defaults)
+        required = spec.args[:-len(optional)]
+    else:
+        optional = ()
+        required = spec.args
     for arg in required:
-        parser.add_argument(arg.replace("_", "-"))
+        parser.add_argument(arg)
     for arg, default in optional:
         arg = arg.replace("_", "-")
         if default is True:
