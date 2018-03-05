@@ -1,7 +1,7 @@
 Simple Script
 =============
 
-* .. image:: https://pypip.in/version/simplescript/badge.svg?branch=master
+* .. image:: https://img.shields.io/pypi/v/simplescript.svg?branch=master
     :target: https://pypi.python.org/pypi/simplescript/
     :alt: Latest Version
 
